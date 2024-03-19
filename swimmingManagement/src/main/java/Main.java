@@ -72,18 +72,21 @@ public class Main {
 		case 1:
 			System.out.println("Enter day:");
 			filterValue = scanner.nextLine();
-			//swimmingSystem.displayTimetable("day", filterValue);
+			swimmingSystem.displayTimetable("day", filterValue);
+			askForBooking(scanner, learnerName);
 			break;
 		case 2:
 			System.out.println("Enter grade level:");
 			int gradeLevel = scanner.nextInt();
 			scanner.nextLine(); // Consume newline
-			//swimmingSystem.displayTimetable("grade level", String.valueOf(gradeLevel));
+			swimmingSystem.displayTimetable("grade level", String.valueOf(gradeLevel));
+			askForBooking(scanner, learnerName);
 			break;
 		case 3:
 			System.out.println("Enter coach:");
 			filterValue = scanner.nextLine();
-			//swimmingSystem.displayTimetable("coach", filterValue);
+			swimmingSystem.displayTimetable("coach", filterValue);
+			askForBooking(scanner, learnerName)
 			break;
 		default:
 			System.out.println("Invalid filter option.");
