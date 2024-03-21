@@ -1,10 +1,9 @@
-
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Lesson {
     private String day;
+    private int week;
     private String time;
     private int gradeLevel;
     private String coach;
@@ -30,6 +29,7 @@ public class Lesson {
         this.time = time;
         this.gradeLevel = gradeLevel;
         this.coach = coach;
+        this.learners = new ArrayList<>();
     }
 
 
@@ -70,6 +70,7 @@ public class Lesson {
     }
 
     public List<Learner> getLearners() {
+
         return learners;
     }
 
@@ -85,5 +86,33 @@ public class Lesson {
         this.learners = learners;
     }
 
+    public boolean addLearner(Learner learner) {
+        if (learners.size() < 4) {
+            learners.add(learner);
+            return true;
+        }
+        return false;
+    }
 
+    public int getWeek() {
+        return week;
+    }
+
+    public void setWeek(int week) {
+        this.week = week;
+    }
+
+    public boolean removeLearner(Learner learner) {
+        return learners.remove(learner);
+    }
+
+    @Override
+    public String toString() {
+        return "Lesson{" +
+                "day='" + day + '\'' +
+                ", week=" + week +
+                ", time='" + time + '\'' +
+                ", gradeLevel=" + gradeLevel +
+                '}';
+    }
 }

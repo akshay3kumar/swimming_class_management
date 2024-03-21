@@ -15,8 +15,8 @@ public class Main {
 			System.out.println("4. Monthly learner report");
 			System.out.println("5. Monthly coach report");
 			System.out.println("6. Register a new learner");
-            System.out.println("7. Exit");
-			System.out.print("Enter your choice: ");
+                        System.out.println("7. Exit");
+			System.out.println("Enter your choice: ");
 
 			int choice = scanner.nextInt();
 			scanner.nextLine(); // Consume newline
@@ -29,7 +29,7 @@ public class Main {
 				// Code to handle changing/canceling a booking
 				System.out.println("Enter learner's name:");
 				String learnerName = scanner.nextLine();
-				//swimmingSystem.changeOrCancelBooking(learnerName);
+				swimmingSystem.changeOrCancelBooking(learnerName);
 				break;
 			case 3:
 				// Code to handle attending a swimming lesson
@@ -73,20 +73,20 @@ public class Main {
 			System.out.println("Enter day:");
 			filterValue = scanner.nextLine();
 			swimmingSystem.displayTimetable("day", filterValue);
-			askForBooking(scanner, learnerName);
+			swimmingSystem.askForBooking(scanner, learnerName);
 			break;
 		case 2:
 			System.out.println("Enter grade level:");
 			int gradeLevel = scanner.nextInt();
 			scanner.nextLine(); // Consume newline
 			swimmingSystem.displayTimetable("grade level", String.valueOf(gradeLevel));
-			askForBooking(scanner, learnerName);
+			swimmingSystem.askForBooking(scanner, learnerName);
 			break;
 		case 3:
 			System.out.println("Enter coach:");
 			filterValue = scanner.nextLine();
 			swimmingSystem.displayTimetable("coach", filterValue);
-			askForBooking(scanner, learnerName)
+			swimmingSystem.askForBooking(scanner, learnerName);
 			break;
 		default:
 			System.out.println("Invalid filter option.");

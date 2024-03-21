@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,11 +86,42 @@ public class Learner {
 		this.canceledLessons = canceledLessons;
 	}
 
+	public void bookLesson(Lesson lesson) {
+		bookedLessons.add(lesson);
+	}
+
+	public void cancelLesson(Lesson lesson) {
+		bookedLessons.remove(lesson);
+		canceledLessons.add(lesson);
+	}
+
+	public void attendLesson(Lesson lesson) {
+		bookedLessons.remove(lesson);
+		attendedLessons.add(lesson);
+	}
 
 	public void writeReviewAndRating(Lesson lesson, String review, int rating) {
 		// Write review and rating for a lesson
 	}
 
+	public void changeBooking(Lesson oldLesson, Lesson newLesson) {
+		bookedLessons.remove(oldLesson);
+		bookedLessons.add(newLesson);
+	}
+
+	public void cancelBooking(Lesson lesson) {
+		bookedLessons.remove(lesson);
+		canceledLessons.add(lesson);
+	}
+
+	public int getRatingForLesson(Lesson lesson) {
+		for (Lesson attendedLesson : attendedLessons) {
+			if (attendedLesson.equals(lesson)) {
+				return attendedLesson.getRating();
+			}
+		}
+		return -1; // Return -1 if rating not found for the lesson
+	}
 	
 
 }
