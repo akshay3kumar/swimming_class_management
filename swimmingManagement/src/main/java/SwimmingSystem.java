@@ -15,7 +15,14 @@ public class SwimmingSystem {
 		this.lessons = new ArrayList<>();
 		addDefaultlessons();
 		this.coaches = new ArrayList<>();
+		defaultCoaches();
 		this.learners = new ArrayList<>();
+	}
+
+	private void defaultCoaches() {
+		this.coaches.add(new Coach("Helen"));
+		this.coaches.add(new Coach("Doe"));
+
 	}
 
 	private void addDefaultlessons() {
@@ -32,7 +39,7 @@ public class SwimmingSystem {
 				String[] l = line.split(",");
 				week = Integer.parseInt(l[0]);
 				grade =Integer.parseInt(l[3]);
-				Lesson les = new Lesson(l[1],l[2],grade,"Helen");
+				Lesson les = new Lesson(l[1],l[2],grade,l[4].trim());
 				les.setWeek(week);
 				lessons.add(les);
 			}
@@ -145,7 +152,7 @@ public class SwimmingSystem {
 	public void displayTimetable(String day, String filterValue) {
 		System.out.println("Timetable for " + day + " | Filter: " + filterValue);
 		System.out.println("------------------------------------------------------------");
-		System.out.println("Week \t Day\tTime\tGrade Level\tCoach\tCapacity");
+		System.out.println("Week \t Day\tTime\tGrade Level\tCoach\tVacant");
 		System.out.println("------------------------------------------------------------");
 		for (Lesson lesson : lessons) {
 			boolean match = false;
@@ -159,7 +166,7 @@ public class SwimmingSystem {
 
 			if (match) {
 				System.out.println(lesson.getWeek()+"\t"+ lesson.getDay() + "\t" + lesson.getTime() + "\t" + lesson.getGradeLevel() + "\t\t"
-						+ lesson.getCoach() + "\t" + lesson.getCapacity());
+						+ lesson.getCoach() + "\t" + (4-lesson.getLearners().size()));
 			}
 		}
 		System.out.println("------------------------------------------------------------");
@@ -182,6 +189,12 @@ public class SwimmingSystem {
 		int sel_grade = scanner.nextInt();
 		scanner.nextLine();
 
+		if(learner.getCurrentGrade() < sel_grade-1)
+		{
+			System.out.println("-------------------------------------------------------");
+			System.out.println("You are not Eligible for this Grade ...");
+			System.out.println("-------------------------------------------------------");
+		}
 		Optional<Lesson> first = this.lessons.stream().filter(lesson -> (lesson.getWeek() == sel_week
 						&& lesson.getDay().equals(sel_day)
 						&& lesson.getTime().equals(sel_slot)
@@ -263,7 +276,21 @@ public class SwimmingSystem {
 	}
 
 	public void attendSwimmingLesson(String learnerName) {
+
+		Learner learner = findLearner(learnerName);
+		if(learner == null)
+		{
+			System.out.println(learnerName+ "Not Registered");
+			return;
+		}
+
+		System.out.println( "All Booked Lesson of "+learnerName);
+		learner.getBookedLessons().forEach(bookedLesson -> System.out.println(bookedLesson.toString()));
 		Scanner scanner = new Scanner(System.in);
+
+		System.out.println("Enter the week of the lesson:");
+		int week = scanner.nextInt();
+		scanner.nextLine();
 
 		System.out.println("Enter the day of the lesson:");
 		String day = scanner.nextLine();
@@ -271,18 +298,34 @@ public class SwimmingSystem {
 		System.out.println("Enter the time slot of the lesson:");
 		String timeSlot = scanner.nextLine();
 
-		System.out.println("Enter the grade level of the lesson:");
-		int gradeLevel = scanner.nextInt();
-		scanner.nextLine(); // Consume newline
-
-		Lesson lesson = findLessonByDayTimeGrade(day, timeSlot, gradeLevel);
+		Lesson lesson = findLessonByDayTimeGrade(day, timeSlot, week);
 		if (lesson != null) {
-			Learner learner = findLearner(learnerName);
 			if (learner != null) {
 				if (lesson.getLearners().contains(learner)) {
-					lesson.getLearners().remove(learner);
-					learner.attendLesson(lesson);
+					System.out.println("-------------------------------------------------------------------");
 					System.out.println(learnerName + " attended the lesson successfully.");
+					System.out.println("Give the rating to Coach from (1 to 5) ");
+					int rating = scanner.nextInt();
+					scanner.nextLine();
+					Optional<Coach> coach = this.coaches.stream()
+							.filter(coach1 -> coach1.getName().equals(lesson.getCoach())).findFirst();
+					if(!coach.isEmpty())
+					{
+						try {
+							lesson.setRating(rating);
+							coach.get().getLessonsTaught().add((Lesson) lesson.clone());
+						} catch (CloneNotSupportedException e) {
+							throw new RuntimeException(e);
+						}
+					}
+					lesson.getLearners().remove(learner);
+
+
+
+					learner.attendLesson(lesson);
+
+
+
 				} else {
 					System.out.println(learnerName + " is not booked for this lesson.");
 				}
@@ -432,6 +475,7 @@ public class SwimmingSystem {
 			for (Lesson lesson : learner.getAttendedLessons()) {
 				System.out.println(" - " + lesson.getDay() + " " + lesson.getTime());
 				learnerAttendedCount++;
+				learnerBookedCount++;
 			}
 
 			// Print learner's total counts
@@ -450,16 +494,13 @@ public class SwimmingSystem {
 			int numberOfRatings = 0;
 			for (Lesson lesson : coach.getLessonsTaught()) {
 				System.out.println("Lesson: " + lesson.getDay() + " " + lesson.getTime());
-				List<Learner> learners = lesson.getLearners();
-				for (Learner learner : learners) {
-					// Assuming rating is provided by the learner after attending the lesson
-					int rating = learner.getRatingForLesson(lesson);
+					int rating = lesson.getRating();
 					if (rating != -1) { // -1 indicates no rating provided
 						totalRatings += rating;
 						numberOfRatings++;
 						System.out.println(" - Rating: " + rating);
 					}
-				}
+
 			}
 			if (numberOfRatings > 0) {
 				double averageRating = (double) totalRatings / numberOfRatings;

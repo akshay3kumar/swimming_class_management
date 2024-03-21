@@ -1,9 +1,9 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Coach {
     private String name;
+    private int rating;
     private List<Lesson> lessonsTaught;
 
     public Coach(String name) {
@@ -27,4 +27,7 @@ public class Coach {
         this.lessonsTaught = lessonsTaught;
     }
 
+    public void addLesson(Lesson lesson) {
+        lessonsTaught.add(lesson);
+    }
 }

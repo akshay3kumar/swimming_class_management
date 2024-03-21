@@ -1,5 +1,4 @@
 
-
 import java.util.Scanner;
 
 public class Main {
@@ -15,7 +14,9 @@ public class Main {
 			System.out.println("4. Monthly learner report");
 			System.out.println("5. Monthly coach report");
 			System.out.println("6. Register a new learner");
-                        System.out.println("7. Exit");
+			System.out.println("7. Add a new lesson");
+            System.out.println("8. Add a new coach");
+            System.out.println("9. Exit");
 			System.out.println("Enter your choice: ");
 
 			int choice = scanner.nextInt();
@@ -35,21 +36,29 @@ public class Main {
 				// Code to handle attending a swimming lesson
 				System.out.println("Enter learner's name:");
 				String learnerName1 = scanner.nextLine();
-				//swimmingSystem.attendSwimmingLesson(learnerName1);
+				swimmingSystem.attendSwimmingLesson(learnerName1);
 				break;
 			case 4:
 				// Code to handle generating monthly learner report
-				//swimmingSystem.generateMonthlyReport();
+				swimmingSystem.generateMonthlyReport();
 				break;
 			case 5:
 				// Code to handle generating monthly coach report
-				//swimmingSystem.generateMonthlyReportForCoach();
+				swimmingSystem.generateMonthlyReportForCoach();
 				break;
 			case 6:
 				// Code to handle registering a new learner
 				swimmingSystem.registerNewLearner();
 				break;
-			case 7:
+			 case 7:
+                 // Code to handle adding a new lesson
+                 swimmingSystem.addNewLesson();
+                 break;
+             case 8:
+                 // Code to handle adding a new coach
+                 swimmingSystem.addNewCoach();
+                 break;
+			case 9:
 				System.out.println("Exiting program. Goodbye!");
 				System.exit(0);
 			default:
@@ -73,20 +82,20 @@ public class Main {
 			System.out.println("Enter day:");
 			filterValue = scanner.nextLine();
 			swimmingSystem.displayTimetable("day", filterValue);
-			swimmingSystem.askForBooking(scanner, learnerName);
+			swimmingSystem.askForBooking(scanner,learnerName);
 			break;
 		case 2:
 			System.out.println("Enter grade level:");
 			int gradeLevel = scanner.nextInt();
 			scanner.nextLine(); // Consume newline
 			swimmingSystem.displayTimetable("grade level", String.valueOf(gradeLevel));
-			swimmingSystem.askForBooking(scanner, learnerName);
+			swimmingSystem.askForBooking(scanner,learnerName);
 			break;
 		case 3:
 			System.out.println("Enter coach:");
 			filterValue = scanner.nextLine();
 			swimmingSystem.displayTimetable("coach", filterValue);
-			swimmingSystem.askForBooking(scanner, learnerName);
+			swimmingSystem.askForBooking(scanner,learnerName);
 			break;
 		default:
 			System.out.println("Invalid filter option.");

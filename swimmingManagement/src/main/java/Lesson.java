@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lesson {
+public class Lesson implements Cloneable {
     private String day;
     private int week;
     private String time;
@@ -114,5 +114,10 @@ public class Lesson {
                 ", time='" + time + '\'' +
                 ", gradeLevel=" + gradeLevel +
                 '}';
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
