@@ -11,19 +11,45 @@ public class SwimmingSystem {
 	private List<Coach> coaches;
 	private List<Learner> learners;
 
-	public SwimmingSystem() {
-		this.lessons = new ArrayList<>();
-		addDefaultlessons();
-		this.coaches = new ArrayList<>();
-		defaultCoaches();
-		this.learners = new ArrayList<>();
-	}
+    public List<Lesson> getLessons() {
+        return lessons;
+    }
 
-	private void defaultCoaches() {
-		this.coaches.add(new Coach("Helen"));
-		this.coaches.add(new Coach("Doe"));
+    public void setLessons(List<Lesson> lessons) {
+        this.lessons = lessons;
+    }
 
-	}
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
+
+    public void setCoaches(List<Coach> coaches) {
+        this.coaches = coaches;
+    }
+
+    public List<Learner> getLearners() {
+        return learners;
+    }
+
+    public void setLearners(List<Learner> learners) {
+        this.learners = learners;
+    }
+
+    public SwimmingSystem() {
+        this.lessons = new ArrayList<>();
+        addDefaultlessons();
+        this.coaches = new ArrayList<>();
+        defaultCoaches();
+        this.learners = new ArrayList<>();
+        defaultLearners();
+    }
+
+    private void defaultCoaches() {
+        this.coaches.add(new Coach("Helen"));
+        this.coaches.add(new Coach("Doe"));
+        this.coaches.add(new Coach("John"));
+
+    }
 
 	private void addDefaultlessons() {
 
@@ -140,7 +166,7 @@ public class SwimmingSystem {
 		return null;
 	}
 
-	private Learner findLearner(String learnerName) {
+	public Learner findLearner(String learnerName) {
 		for (Learner learner : learners) {
 			if (learner.getName().equalsIgnoreCase(learnerName)) {
 				return learner;
@@ -511,5 +537,18 @@ public class SwimmingSystem {
 			System.out.println();
 		}
 	}
+
+    private void defaultLearners() {
+       Learner learner = new Learner("Manish", "Male", 6, "1234567891", 2);
+        addLearner(learner);
+        learner = new Learner("Abdul", "Male", 7, "1234567891", 1);
+        addLearner(learner);
+        learner = new Learner("Suresh", "Male", 6, "1234567891", 3);
+        addLearner(learner);
+        learner = new Learner("Anku", "Female", 5, "1234567891", 4);
+        addLearner(learner);
+        learner = new Learner("Akshay", "Male", 8, "1234567891", 5);
+        addLearner(learner);
+    }
 
 }
