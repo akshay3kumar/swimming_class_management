@@ -1,0 +1,137 @@
+Main Menu:
+1. Book a swimming lesson
+2. Change/Cancel a booking
+3. Attend a swimming lesson
+4. Monthly learner report
+5. Monthly coach report
+6. Register a new learner
+7. Add a new lesson
+8. Add a new coach
+9. Exit
+Enter your choice: 
+1
+Enter your name:
+Manish
+Select filter option:
+1. View timetable by day
+2. View timetable by grade level
+3. View timetable by coach
+2
+Enter grade level:
+2
+Timetable for grade level | Filter: 2
+------------------------------------------------------------
+Week 	 Day	Time	Grade Level	Coach	Vacant
+------------------------------------------------------------
+1	Monday	05:00-06:00	2		Doe	4
+1	Friday	04:00-05:00	2		Doe	4
+2	Monday	05:00-06:00	2		Doe	4
+2	Friday	04:00-05:00	2		Doe	4
+3	Monday	05:00-06:00	2		Doe	4
+3	Friday	04:00-05:00	2		Doe	4
+4	Monday	05:00-06:00	2		Doe	4
+4	Friday	04:00-05:00	2		Doe	4
+------------------------------------------------------------
+Enter Week number :
+4
+Enter Day :
+Friday
+Enter TimeSlot :
+04:00-05:00
+Enter Grade:
+2
+-------------------------------------------------------
+Booking Successfull
+-------------------------------------------------------
+Main Menu:
+1. Book a swimming lesson
+2. Change/Cancel a booking
+3. Attend a swimming lesson
+4. Monthly learner report
+5. Monthly coach report
+6. Register a new learner
+7. Add a new lesson
+8. Add a new coach
+9. Exit
+Enter your choice: 
+3
+Enter learner's name:
+Manish
+All Booked Lesson of Manish
+Lesson{day='Friday', week=4, time='04:00-05:00', gradeLevel=2}
+Enter the week of the lesson:
+4
+Enter the day of the lesson:
+Friday
+Enter the time slot of the lesson:
+04:00-05:00
+-------------------------------------------------------------------
+Manish attended the lesson successfully.
+Give the rating to Coach from (1 to 5) 
+3
+Main Menu:
+1. Book a swimming lesson
+2. Change/Cancel a booking
+3. Attend a swimming lesson
+4. Monthly learner report
+5. Monthly coach report
+6. Register a new learner
+7. Add a new lesson
+8. Add a new coach
+9. Exit
+Enter your choice: 
+4
+Learner: Manish
+Booked lessons:
+Canceled lessons:
+Attended lessons:
+ - Friday 04:00-05:00
+Total booked: 1
+Total canceled: 0
+Total attended: 1
+
+Learner: Abdul
+Booked lessons:
+Canceled lessons:
+Attended lessons:
+Total booked: 0
+Total canceled: 0
+Total attended: 0
+
+Learner: Suresh
+Booked lessons:
+Canceled lessons:
+Attended lessons:
+Total booked: 0
+Total canceled: 0
+Total attended: 0
+
+Learner: Anku
+Booked lessons:
+Canceled lessons:
+Attended lessons:
+Total booked: 0
+Total canceled: 0
+Total attended: 0
+
+Learner: Akshay
+Booked lessons:
+Canceled lessons:
+Attended lessons:
+Total booked: 0
+Total canceled: 0
+Total attended: 0
+
+Main Menu:
+1. Book a swimming lesson
+2. Change/Cancel a booking
+3. Attend a swimming lesson
+4. Monthly learner report
+5. Monthly coach report
+6. Register a new learner
+7. Add a new lesson
+8. Add a new coach
+9. Exit
+Enter your choice: 
+9
+Exiting program. Goodbye!
