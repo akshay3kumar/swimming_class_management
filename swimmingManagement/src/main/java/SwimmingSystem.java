@@ -191,8 +191,12 @@ public class SwimmingSystem {
 			}
 
 			if (match) {
-				System.out.println(lesson.getWeek()+"\t"+ lesson.getDay() + "\t" + lesson.getTime() + "\t" + lesson.getGradeLevel() + "\t\t"
-						+ lesson.getCoach() + "\t" + (4-lesson.getLearners().size()));
+				System.out.println(lesson.getWeek()
+                                        +"\t"+ lesson.getDay() 
+                                        + "\t" + lesson.getTime() 
+                                        + "\t" + lesson.getGradeLevel() 
+                                        + "\t" + lesson.getCoach() 
+                                        + "\t" + (4-lesson.getLearners().size()));
 			}
 		}
 		System.out.println("------------------------------------------------------------");
@@ -296,8 +300,9 @@ public class SwimmingSystem {
 
 		Learner learner = new Learner(name, gender, age, emergencyContact, currentGrade);
 		addLearner(learner);
-
+                System.out.println("-------------------------------------------------------");
 		System.out.println("New learner registered successfully!");
+                System.out.println("-------------------------------------------------------");
 		// scanner.close();
 	}
 
@@ -306,13 +311,22 @@ public class SwimmingSystem {
 		Learner learner = findLearner(learnerName);
 		if(learner == null)
 		{
-			System.out.println(learnerName+ "Not Registered");
-			return;
+                    System.out.println("-------------------------------------------------------");
+                    System.out.println(learnerName + "Not Registered");
+                    System.out.println("-------------------------------------------------------");
+                    return;
 		}
 
 		System.out.println( "All Booked Lesson of "+learnerName);
+                 if(learner.getBookedLessons().size()<1)
+                {
+                    System.out.println(learnerName+" has no booked Lesson to attend");
+                    return;
+                }
+                 System.out.println("-------------------------------------------------------");
 		learner.getBookedLessons().forEach(bookedLesson -> System.out.println(bookedLesson.toString()));
-		Scanner scanner = new Scanner(System.in);
+		System.out.println("-------------------------------------------------------");
+                Scanner scanner = new Scanner(System.in);
 
 		System.out.println("Enter the week of the lesson:");
 		int week = scanner.nextInt();
@@ -330,6 +344,13 @@ public class SwimmingSystem {
 				if (lesson.getLearners().contains(learner)) {
 					System.out.println("-------------------------------------------------------------------");
 					System.out.println(learnerName + " attended the lesson successfully.");
+                                        System.out.println("-------------------------------------------------------");
+                                        System.out.println("1: Very dissatisfied \n"
+                                                + " 2: Dissatisfied\n"
+                                                + " 3: Ok\n"
+                                                + " 4: Satisfied\n"
+                                                + " 5: Very Satisfied\n");
+                                        System.out.println("-------------------------------------------------------");
 					System.out.println("Give the rating to Coach from (1 to 5) ");
 					int rating = scanner.nextInt();
 					scanner.nextLine();
@@ -389,10 +410,15 @@ public class SwimmingSystem {
 		Learner learner = findLearner(learnerName);
 		if(learner == null)
 		{
-			System.out.println(learnerName+ "Not Registered");
-			return;
+                    System.out.println(learnerName+ "Not Registered");
+                    return;
 		}
 		System.out.println( "All Booked Lesson of "+learnerName);
+                if(learner.getBookedLessons().size()<1)
+                {
+                    System.out.println(learnerName+" has no booked Lesson");
+                    return;
+                }
 		learner.getBookedLessons().forEach(bookedLesson -> System.out.println(bookedLesson.toString()));
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the week of the lesson:");
